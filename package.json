@@ -1,6 +1,6 @@
 {
-  "name": "ssovit/devthing",
-  "version": "1.0.1",
+  "name": "devthing",
+  "version": "1.0.0",
   "description": "something sometihng",
   "main": "index.js",
   "scripts": {

@@ -20,7 +20,7 @@
     "url": "https://github.com/ssovit/devthing/issues"
   },
   "homepage": "https://github.com/ssovit/devthing#readme",
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.8.4",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",

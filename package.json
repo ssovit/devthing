@@ -1,5 +1,5 @@
 {
-  "name": "devthing",
+  "name": "@ssovit/devthing",
   "version": "1.0.0",
   "description": "something sometihng",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ssovit/devthing.git"
+    "url": "git+https://github.com/ssovit/devthing.git"
   },
   "keywords": [
     "something",

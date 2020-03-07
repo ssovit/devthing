@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/ssovit/devthing#readme",
   "dependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.8.7",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-transform-modules-commonjs": "^7.8.3",
     "@babel/plugin-transform-strict-mode": "^7.8.3",

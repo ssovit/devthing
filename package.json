@@ -52,5 +52,9 @@
     "gulp-wp-pot": "^2.3.6",
     "merge-stream": "^2.0.0",
     "vinyl-source-stream": "^2.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-es2015-classes": "^6.24.1",
+    "babel-plugin-transform-es2015-object-super": "^6.24.1"
   }
 }

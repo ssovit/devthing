@@ -1,6 +1,6 @@
 {
   "name": "@ssovit/devthing",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "something sometihng",
   "main": "index.js",
   "scripts": {
@@ -51,10 +51,8 @@
     "gulp-watch": "^5.0.1",
     "gulp-wp-pot": "^2.3.6",
     "merge-stream": "^2.0.0",
-    "vinyl-source-stream": "^2.0.0"
-  },
-  "devDependencies": {
     "babel-plugin-transform-es2015-classes": "^6.24.1",
-    "babel-plugin-transform-es2015-object-super": "^6.24.1"
+    "babel-plugin-transform-es2015-object-super": "^6.24.1",
+    "vinyl-source-stream": "^2.0.0"
   }
 }

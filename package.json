@@ -1,6 +1,6 @@
 {
   "name": "@ssovit/devthing",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "something sometihng",
   "main": "index.js",
   "scripts": {
@@ -31,6 +31,7 @@
     "del": "^5.1.0",
     "fs": "0.0.2",
     "gulp": "^4.0.2",
+    "gulp-archiver": "^1.0.0",
     "gulp-buffer": "0.0.2",
     "gulp-clean-css": "^4.2.0",
     "gulp-clone": "^2.0.1",

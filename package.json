@@ -1,6 +1,6 @@
 {
   "name": "@ssovit/devthing",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "something sometihng",
   "main": "index.js",
   "scripts": {
@@ -31,7 +31,6 @@
     "del": "^5.1.0",
     "fs": "0.0.2",
     "gulp": "^4.0.2",
-    "gulp-archiver": "^1.0.0",
     "gulp-buffer": "0.0.2",
     "gulp-clean-css": "^4.2.0",
     "gulp-clone": "^2.0.1",
@@ -47,6 +46,7 @@
     "gulp-tap": "^2.0.0",
     "gulp-uglify": "^3.0.2",
     "gulp-util": "^3.0.8",
+    "gulp-vinyl-zip": "^2.2.0",
     "gulp-watch": "^5.0.1",
     "gulp-wp-pot": "^2.3.6",
     "merge-stream": "^2.0.0",

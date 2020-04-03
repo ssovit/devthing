@@ -29,6 +29,7 @@
     "autoprefixer": "^9.7.4",
     "babel-loader": "^8.0.6",
     "babel-plugin-module-resolver": "^4.0.0",
+    "core-js": "^3.6.4",
     "del": "^5.1.0",
     "fs": "0.0.2",
     "gulp": "^4.0.2",

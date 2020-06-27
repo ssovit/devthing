@@ -146,7 +146,7 @@ module.exports = (basedir) => {
 			});
 		}
 	});
-	gulp.task('plugin:pot', function() {
+	gulp.task('plugin:wp-pot', function() {
 		return gulp.src(['*.php', '**/*.php']).pipe(plugins.wpPot({
 			domain: config.plugin.textdomain,
 			destFile: config.plugin.name + '.pot',
@@ -222,4 +222,5 @@ module.exports = (basedir) => {
 			allowEmpty: true,
 		}).pipe(gulp.dest('build/' + config.plugin.name));
 	}));
+	return gulp;
 };

@@ -28,12 +28,7 @@ module.exports = (basedir) => {
 	function scssTask(name) {
 		var options = {};
 		var dest = config.scss[name].dest || config.scss.defaultDest;
-		var source = gulp.src(config.scss[name].files, {
-			allowEmpty: true,
-		}).pipe(plugins.sourcemaps.init());
-		if (config.scss[name].merge !== false) {
-			source = source.pipe(plugins.concat(name + '.css'));
-		}
+		var source = gulp.src(config.scss[name].files).pipe(plugins.sourcemaps.init());
 		source = source.pipe(plugins.sass()).on('error', err).pipe(plugins.postcss([plugins.autoprefixer()]));
 		if (config.scss[name].header) {
 			source = source.pipe(plugins.header(config.scss[name].header, {

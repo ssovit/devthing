@@ -193,10 +193,11 @@ module.exports = (basedir) => {
 			.pipe(gulp.dest('./'));
 	});
 	gulp.task('plugin:plugin', function () {
-		let _gulp = gulp.src("includes/Plugin.php");
+		let _gulp = gulp.src(["includes/Plugin.php","includes/Constants.php"]);
 		Object.keys(config.constants)
 			.forEach(key => {
-				const regexp = new RegExp('(const ' + key + '\\s?\\=\\s?\\\')(.*)(\\\')', 'g');
+				const regexp = new RegExp('(const ' + key + '\\s?\\=\\s?\\\'?\\"?)([^\\\'\\";]+)(\\\'?\\"?\\\s?;)', 'g');
+				console.log(regexp);
 				_gulp = _gulp.pipe(plugins.replace(regexp, '$1' + config.plugin[config.constants[key]] + '$3'));
 			});
 		return _gulp.pipe(gulp.dest('includes'));

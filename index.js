@@ -193,14 +193,26 @@ module.exports = (basedir) => {
 			.pipe(gulp.dest('./'));
 	});
 	gulp.task('plugin:plugin', function () {
-		let _gulp = gulp.src(["includes/Plugin.php","includes/Constants.php"]);
+		let _gulp = gulp.src(["includes/Plugin.php", "includes/Constants.php"]);
 		Object.keys(config.constants)
 			.forEach(key => {
 				const regexp = new RegExp('(const ' + key + '\\s?\\=\\s?\\\'?\\"?)([^\\\'\\";]+)(\\\'?\\"?\\\s?;)', 'g');
-				console.log(regexp);
 				_gulp = _gulp.pipe(plugins.replace(regexp, '$1' + config.plugin[config.constants[key]] + '$3'));
 			});
 		return _gulp.pipe(gulp.dest('includes'));
+	});
+	gulp.task("plugin:composer", function (cb) {
+		let json = JSON.parse(fs.readFileSync("./composer.json"));
+		json.autoload = json.autoload || {};
+		json.autoload['psr-4'] = {};
+		json.autoload['psr-4'][`${config.plugin.namespace}\\`] = "includes";
+		fs.writeFileSync('./composer.json', JSON.stringify(json, null, 2));
+		return cb();
+	});
+	gulp.task('plugin:namespace', function () {
+		return gulp.src(["**/*.php", '!vendor/', '!vendor/**'])
+			.pipe(plugins.replace(/(namespace\s)([^\\;]+)((\\[^;]+)?;)/g, '$1' + config.plugin.namespace + '$3'))
+			.pipe(gulp.dest('.'));
 	});
 	gulp.task("plugin:textdomain", function () {
 		var pattern = /((esc_attr__|esc_attr_e|esc_html_e|esc_html__|__|_e)\((\"|\'))(((?!\((\'|\")).)*)((\'|\")\s?,\s?(\'|\"))([\w_-]+)((\'|\")\))/ig;

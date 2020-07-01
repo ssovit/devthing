@@ -206,7 +206,7 @@ module.exports = (basedir) => {
 		json.autoload = json.autoload || {};
 		json.autoload['psr-4'] = {};
 		json.autoload['psr-4'][`${config.plugin.namespace}\\`] = "includes";
-		fs.writeFileSync('./composer.json', JSON.stringify(json, null, 2));
+		fs.writeFileSync('./composer.json', JSON.stringify(json, null,'\t'));
 		return cb();
 	});
 	gulp.task('plugin:namespace', function () {

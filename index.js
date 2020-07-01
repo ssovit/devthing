@@ -162,7 +162,7 @@ module.exports = (basedir) => {
 			}
 		});
 	gulp.task('plugin:wp-pot', function () {
-		return gulp.src(['*.php', '**/*.php'])
+		return gulp.src(['*.php', '**/*.php', '!vendor/', '!vendor/**'])
 			.pipe(plugins.wpPot({
 				domain: config.plugin.textdomain,
 				destFile: config.plugin.name + '.pot',
@@ -211,7 +211,7 @@ module.exports = (basedir) => {
 	});
 	gulp.task('plugin:namespace', function () {
 		return gulp.src(["**/*.php", '!vendor/', '!vendor/**'])
-			.pipe(plugins.replace(/(namespace\s)([^\\;]+)((\\[^;]+)?;)/g, '$1' + config.plugin.namespace + '$3'))
+			.pipe(plugins.replace(/^(namespace\s)([^\\;]+)((\\[^;]+)?;)/gm, '$1' + config.plugin.namespace + '$3'))
 			.pipe(gulp.dest('.'));
 	});
 	gulp.task("plugin:textdomain", function () {

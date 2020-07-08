@@ -1,6 +1,6 @@
 {
   "name": "@ssovit/devthing",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "something sometihng",
   "main": "index.js",
   "scripts": {
@@ -21,11 +21,11 @@
   },
   "homepage": "https://github.com/ssovit/devthing#readme",
   "dependencies": {
-    "@babel/core": "^7.10.3",
-    "@babel/plugin-proposal-class-properties": "^7.10.1",
-    "@babel/plugin-transform-modules-commonjs": "^7.10.1",
-    "@babel/polyfill": "^7.10.1",
-    "@wordpress/babel-preset-default": "^4.16.0",
+    "@babel/core": "^7.10.4",
+    "@babel/plugin-proposal-class-properties": "^7.10.4",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@babel/polyfill": "^7.10.4",
+    "@wordpress/babel-preset-default": "^4.17.0",
     "autoprefixer": "^9.8.4",
     "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",

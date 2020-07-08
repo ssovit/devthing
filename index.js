@@ -34,7 +34,7 @@ module.exports = (basedir) => {
 			.pipe(plugins.sourcemaps.init());
 		source = source.pipe(plugins.sass())
 			.on('error', err)
-			.pipe(plugins.postcss([plugins.autoprefixer()]));
+			.pipe(plugins.postcss([plugins.autoprefixer({overrideBrowserslist:'last 10 year'})]));
 		if (config.scss[name].header) {
 			source = source.pipe(plugins.header(config.scss[name].header, {
 				pkg: config.theme,

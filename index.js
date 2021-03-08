@@ -21,7 +21,7 @@ module.exports = (basedir) => {
 	function groupTasks(name) {
 		var tasks = gulp.tasks ? Object.keys(gulp.tasks)
 			.sort() : gulp.tree()
-			.nodes.sort();
+				.nodes.sort();
 		return tasks.filter(function (task) {
 			return task.indexOf(name) != -1;
 		});
@@ -34,7 +34,7 @@ module.exports = (basedir) => {
 			.pipe(plugins.sourcemaps.init());
 		source = source.pipe(plugins.sass())
 			.on('error', err)
-			.pipe(plugins.postcss([plugins.autoprefixer({overrideBrowserslist:'last 10 year'})]));
+			.pipe(plugins.postcss([plugins.autoprefixer({ overrideBrowserslist: 'last 10 year' })]));
 		if (config.scss[name].header) {
 			source = source.pipe(plugins.header(config.scss[name].header, {
 				pkg: config.theme,
@@ -79,8 +79,8 @@ module.exports = (basedir) => {
 		var options = {};
 		var dest = config.js[name].dest || config.js.defaultDest;
 		var source = gulp.src(config.js[name].files, {
-				//read: false,
-			})
+			//read: false,
+		})
 			.pipe(plugins.vinylNamed())
 			.pipe(plugins.webpackStream({
 				mode: isLive ? "production" : "development",
@@ -97,20 +97,20 @@ module.exports = (basedir) => {
 						exclude: /node_modules/,
 						query: {
 							presets: [
-							["@babel/preset-env", {
+								["@babel/preset-env", {
 									"useBuiltIns": "usage",
 									corejs: 3,
-							}]
-						],
-							plugins: ["@babel/plugin-transform-modules-commonjs", "@babel/plugin-proposal-class-properties", ],
+								}]
+							],
+							plugins: ["@babel/plugin-transform-modules-commonjs", "@babel/plugin-proposal-class-properties",],
 						}
-				}]
+					}]
 				}
 			}));
 		if (config.header) {
 			source = source.pipe(plugins.header(config.header + "\n", {
-					pkg: config.plugin,
-				}))
+				pkg: config.plugin,
+			}))
 				.pipe(plugins.header("\"use strict\";\n"));
 		}
 		var mergeStream = plugins.mergeStream();
@@ -154,15 +154,15 @@ module.exports = (basedir) => {
 				gulp.task('copy:' + group, function () {
 					var dest = config.assets[group].dest || config.copy.defaultDest;
 					return gulp.src(config.assets[group].files, {
-							allowEmpty: true,
-						})
+						allowEmpty: true,
+					})
 						.pipe(gulp.dest(dest))
 						.pipe(plugins.livereload());
 				});
 			}
 		});
 	gulp.task('plugin:wp-pot', function () {
-		return gulp.src(['*.php', '**/*.php', '!vendor/', '!vendor/**'])
+		return gulp.src(['*.php', '**/*.php', '!vendor/', '!vendor/**', '!build/**'])
 			.pipe(plugins.wpPot({
 				domain: config.plugin.textdomain,
 				destFile: config.plugin.name + '.pot',
@@ -174,7 +174,7 @@ module.exports = (basedir) => {
 			.pipe(gulp.dest('languages/' + config.plugin.name + '.pot'));
 	});
 	gulp.task('plugin:readme', function (cb) {
-		var contents = ['# ' + config.plugin.title, 'Plugin Version: ' + config.plugin.version, 'Plugin URL: ' + config.plugin.pluginUrl, 'Author URL: ' + config.plugin.authorUrl, 'Author Email: ' + config.plugin.email, '# WordPress Requirement ', 'Requires at least: ' + config.plugin.requires, 'Tested upto: ' + config.plugin.tested, '# License ', 'License: ' + config.plugin.license, 'License URI: ' + config.plugin.licenseURI, ];
+		var contents = ['# ' + config.plugin.title, 'Plugin Version: ' + config.plugin.version, 'Plugin URL: ' + config.plugin.pluginUrl, 'Author URL: ' + config.plugin.authorUrl, 'Author Email: ' + config.plugin.email, '# WordPress Requirement ', 'Requires at least: ' + config.plugin.requires, 'Tested upto: ' + config.plugin.tested, '# License ', 'License: ' + config.plugin.license, 'License URI: ' + config.plugin.licenseURI,];
 		fs.writeFileSync('./README.md', contents.join('\n\n'));
 		return cb();
 	});
@@ -206,7 +206,7 @@ module.exports = (basedir) => {
 		json.autoload = json.autoload || {};
 		json.autoload['psr-4'] = {};
 		json.autoload['psr-4'][`${config.plugin.namespace}\\`] = "includes";
-		fs.writeFileSync('./composer.json', JSON.stringify(json, null,'\t'));
+		fs.writeFileSync('./composer.json', JSON.stringify(json, null, '\t'));
 		return cb();
 	});
 	gulp.task('plugin:namespace', function () {
@@ -216,9 +216,9 @@ module.exports = (basedir) => {
 	});
 	gulp.task("plugin:textdomain", function () {
 		var pattern = /((esc_attr__|esc_attr_e|esc_html_e|esc_html__|__|_e)\((\"|\'))(((?!\((\'|\")).)*)((\'|\")\s?,\s?(\'|\"))([\w_-]+)((\'|\")\))/ig;
-		return gulp.src(["**/*.php", '!vendor/', '!vendor/**', ], {
-				base: "."
-			})
+		return gulp.src(["**/*.php", '!vendor/', '!vendor/**',], {
+			base: "."
+		})
 			.pipe(plugins.replace(pattern, '$1$4$7' + config.plugin.textdomain + '$11'))
 			.pipe(gulp.dest('.'));
 	});
@@ -263,17 +263,17 @@ module.exports = (basedir) => {
 		return plugins.del(['assets', 'languages', 'build']);
 	}, gulp.parallel('scss', 'js', 'copy', 'plugin')));
 	/* Build and Zip */
-	let distFiles = ['**', '!node_modules/', '!node_modules/**', '!build/', '!build/**', '!src/', '!src/**', '!.gitignore', '!.gitlab-ci.yml', '!Gulpfile.js', '!package.json', '!package-lock.json', '!composer.json', '!composer.lock', '!.browserslistrc', '!.git/', '!.git/**', ];
+	let distFiles = ['**', '!node_modules/', '!node_modules/**', '!build/', '!build/**', '!src/', '!src/**', '!.gitignore', '!.gitlab-ci.yml', '!Gulpfile.js', '!package.json', '!package-lock.json', '!composer.json', '!composer.lock', '!.browserslistrc', '!.git/', '!.git/**',];
 	gulp.task('deploy', gulp.series('live', function () {
 		return gulp.src(distFiles, {
-				allowEmpty: true,
-			})
+			allowEmpty: true,
+		})
 			.pipe(gulp.dest('build/'));
 	}));
 	gulp.task('build', gulp.series('live', function () {
 		return gulp.src(distFiles, {
-				allowEmpty: true,
-			})
+			allowEmpty: true,
+		})
 			.pipe(gulp.dest('build/' + config.plugin.name));
 	}));
 	return gulp;

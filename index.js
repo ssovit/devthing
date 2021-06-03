@@ -34,7 +34,7 @@ module.exports = (basedir) => {
 			.pipe(plugins.sourcemaps.init());
 		source = source.pipe(plugins.sass())
 			.on('error', err)
-			//.pipe(plugins.postcss([plugins.autoprefixer({ overrideBrowserslist: 'last 10 year' })])); // until it's fixed
+		//.pipe(plugins.postcss([plugins.autoprefixer({ overrideBrowserslist: 'last 10 year' })])); // until it's fixed
 		if (config.scss[name].header) {
 			source = source.pipe(plugins.header(config.scss[name].header, {
 				pkg: config.theme,
@@ -263,7 +263,7 @@ module.exports = (basedir) => {
 		return plugins.del(['assets', 'languages', 'build']);
 	}, gulp.parallel('scss', 'js', 'copy', 'plugin')));
 	/* Build and Zip */
-	let distFiles = ['**', '!node_modules/', '!node_modules/**', '!build/', '!build/**', '!src/', '!src/**', '!.gitignore', '!.gitlab-ci.yml', '!Gulpfile.js', '!package.json', '!package-lock.json', '!composer.json', '!composer.lock', '!.browserslistrc', '!.git/', '!.git/**',];
+	let distFiles = ['**', '!node_modules/', '!node_modules/**', '!build/', '!build/**', '!src/', '!src/**', '!.gitignore', '!.gitlab-ci.yml', '!Gulpfile.js', '!package.json', '!package-lock.json', '!composer.json', '!composer.lock', '!.browserslistrc', '!.git/', '!.git/**', '!auth.json'];
 	gulp.task('deploy', gulp.series('live', function () {
 		return gulp.src(distFiles, {
 			allowEmpty: true,
